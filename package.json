@@ -1,0 +1,26 @@
+{
+  "name": "@der-alter/generic-fa2",
+  "version": "1.0.0",
+  "description": "Generic Extendable FA2 contracts in LIGOLang",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "make test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/der-alter/generic-fa2.git"
+  },
+  "keywords": ["tezos", "ligo", "ligolang"],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/der-alter/generic-fa2/issues"
+  },
+  "homepage": "https://github.com/der-alter/generic-fa2#readme",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/der-alter"
+  }
+}
