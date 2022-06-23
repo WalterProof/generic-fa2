@@ -77,7 +77,6 @@ let assert_balances
   in
   ()
 
-
 let test_atomic_tansfer_success =
   let initial_storage, owners, operators = get_initial_storage (10n, 10n, 10n) in
   let owner1 = List_helper.nth_exn 0 owners in
