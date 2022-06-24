@@ -1,6 +1,6 @@
 (**
-This file implement the TZIP-12 protocol (a.k.a FA2) for NFT on Tezos
-copyright Wulfman Corporation 2021
+    This file implement the TZIP-12 protocol (a.k.a FA2) for NFT on Tezos
+    copyright Wulfman Corporation 2021
 *)
 
 #import "errors.mligo" "Errors"

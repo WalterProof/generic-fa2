@@ -1,10 +1,6 @@
 #import "./multi_asset.instance.mligo" "MultiAsset"
 #import "./helpers/list.mligo" "List_helper"
 
-type ext = MultiAsset.extension
-type storage = MultiAsset.storage
-type extended_storage = ext storage
-
 let get_initial_storage (a, b, c : nat * nat * nat) =
   let () = Test.reset_state 6n ([] : tez list) in
 
@@ -37,10 +33,13 @@ let get_initial_storage (a, b, c : nat * nat * nat) =
   in
 
   let token_metadata = (Big_map.literal [
-    (1n, ({token_id=1n;token_info=(Map.empty : (string, bytes) map);} : MultiAsset.TokenMetadata.data));
-    (2n, ({token_id=2n;token_info=(Map.empty : (string, bytes) map);} : MultiAsset.TokenMetadata.data));
-    (3n, ({token_id=3n;token_info=(Map.empty : (string, bytes) map);} : MultiAsset.TokenMetadata.data));
-  ] : MultiAsset.TokenMetadata.t) in
+    (1n, ({token_id=1n;token_info=(Map.empty : (string, bytes) map);} :
+    MultiAsset.FA2.TokenMetadata.data));
+    (2n, ({token_id=2n;token_info=(Map.empty : (string, bytes) map);} :
+    MultiAsset.FA2.TokenMetadata.data));
+    (3n, ({token_id=3n;token_info=(Map.empty : (string, bytes) map);} :
+    MultiAsset.FA2.TokenMetadata.data));
+  ] : MultiAsset.FA2.TokenMetadata.t) in
 
   let initial_storage = {
     metadata = Big_map.literal [
@@ -56,7 +55,7 @@ let get_initial_storage (a, b, c : nat * nat * nat) =
   initial_storage, owners, ops
 
 let assert_balances
-  (contract_address : (MultiAsset.parameter, extended_storage) typed_address )
+  (contract_address : (MultiAsset.parameter, MultiAsset.extended_storage) typed_address )
   (a, b, c : (address * nat * nat) * (address * nat * nat) * (address * nat * nat)) =
   let (owner1, token_id_1, balance1) = a in
   let (owner2, token_id_2, balance2) = b in
@@ -84,8 +83,8 @@ let test_atomic_tansfer_success =
   let owner3 = List_helper.nth_exn 2 owners in
   let op1    = List_helper.nth_exn 0 operators in
   let transfer_requests = ([
-    ({from_=owner1; tx=([{to_=owner2;amount=2n;token_id=2n};] : MultiAsset.atomic_trans list)});
-  ] : MultiAsset.transfer)
+    ({from_=owner1; tx=([{to_=owner2;amount=2n;token_id=2n};] : MultiAsset.FA2.atomic_trans list)});
+  ] : MultiAsset.FA2.transfer)
   in
   let () = Test.set_source op1 in
   let (t_addr,_,_) = Test.originate MultiAsset.main initial_storage 0tez in

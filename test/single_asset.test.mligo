@@ -84,9 +84,11 @@ let test_atomic_tansfer_success =
   let owner3 = List_helper.nth_exn 2 owners in
   let op1    = List_helper.nth_exn 0 operators in
   let transfer_requests = ([
-    ({from_=owner1; tx=([{to_=owner2;amount=2n};{to_=owner3;amount=3n}] : SingleAsset.atomic_trans list)});
-    ({from_=owner2; tx=([{to_=owner3;amount=2n};{to_=owner1;amount=3n}] : SingleAsset.atomic_trans list)});
-  ] : SingleAsset.transfer)
+    ({from_=owner1; tx=([{to_=owner2;amount=2n};{to_=owner3;amount=3n}] :
+    SingleAsset.FA2.atomic_trans list)});
+    ({from_=owner2; tx=([{to_=owner3;amount=2n};{to_=owner1;amount=3n}] :
+    SingleAsset.FA2.atomic_trans list)});
+  ] : SingleAsset.FA2.transfer)
   in
   let () = Test.set_source op1 in
   let (t_addr,_,_) = Test.originate SingleAsset.main initial_storage 0tez in
