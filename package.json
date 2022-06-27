@@ -1,6 +1,6 @@
 {
   "name": "ligo-generic-fa2",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "index.js",
   "directories": {
@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/der-alter/generic-fa2#readme",
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
   }
 }

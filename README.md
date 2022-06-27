@@ -1,8 +1,7 @@
 # Generic FA2
 
-```cameligo
-type parameter = [@layout:comb]
-    | Transfer of FA2.transfer
-    | Balance_of of FA2.balance_of
-    | Update_operators of FA2.update_operators
-```
+Experiment with generic FA2 contracts.
+
+Contracts are copied from [contract-catalogue](https://gitlab.com/ligolang/contract-catalogue)
+
+## How it works?

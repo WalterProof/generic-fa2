@@ -1,7 +1,7 @@
 SHELL := /bin/bash
 
 ifndef LIGO
-LIGO=docker run --rm -v "$(PWD)":"$(PWD)" -w "$(PWD)" ligolang/ligo:next
+LIGO=docker run -u $(id -u):$(id -g) --rm -v "$(PWD)":"$(PWD)" -w "$(PWD)" ligolang/ligo:next
 endif
 # ^ use LIGO en var bin if configured, otherwise use docker
 
