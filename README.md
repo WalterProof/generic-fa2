@@ -2,6 +2,9 @@
 
 Experiment with generic FA2 contracts.
 
-Contracts are copied from [contract-catalogue](https://gitlab.com/ligolang/contract-catalogue)
+Original contracts code:
+
+-   <https://gitlab.com/ligolang/contract-catalogue>
+-   <https://github.com/pewulfman/Tezos-TZIP-implementation>
 
 ## How it works?

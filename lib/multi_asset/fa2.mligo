@@ -11,9 +11,8 @@
 
 type storage = Storage.t
 
-(** transfer entrypoint
+(** transfert entrypoint
 *)
-
 type atomic_trans = [@layout:comb] {
    to_      : address;
    token_id : nat;
@@ -75,6 +74,26 @@ let balance_of (type a) (b: balance_of) (s: a storage) : operation list * a stor
    ([operation]: operation list),s
 
 (** update operators entrypoint *)
+(**
+(list %update_operators
+  (or
+    (pair %add_operator
+      (address %owner)
+      (pair
+        (address %operator)
+        (nat %token_id)
+      )
+    )
+    (pair %remove_operator
+      (address %owner)
+      (pair
+        (address %operator)
+        (nat %token_id)
+      )
+    )
+  )
+)
+*)
 type operator = [@layout:comb] {
    owner    : address;
    operator : address;
@@ -83,7 +102,24 @@ type operator = [@layout:comb] {
 
 type unit_update      = Add_operator of operator | Remove_operator of operator
 type update_operators = unit_update list
+(**
+Add or Remove token operators for the specified token owners and token IDs.
 
+
+The entrypoint accepts a list of update_operator commands. If two different
+commands in the list add and remove an operator for the same token owner and
+token ID, the last command in the list MUST take effect.
+
+
+It is possible to update operators for a token owner that does not hold any token
+balances yet.
+
+
+Operator relation is not transitive. If C is an operator of B and if B is an
+operator of A, C cannot transfer tokens that are owned by A, on behalf of B.
+
+
+*)
 let update_ops (type a) (updates: update_operators) (s: a storage) : operation list * a storage =
    let update_operator (operators,update : Operators.t * unit_update) = match update with
       Add_operator    {owner=owner;operator=operator;token_id=token_id} -> Operators.add_operator    operators owner operator token_id
@@ -100,3 +136,5 @@ let update_ops : update_operators -> storage -> operation list * storage =
    let () = failwith Errors.not_supported in
    ([]: operation list),s
 *)
+
+type parameter = [@layout:comb] | Transfer of transfer | Balance_of of balance_of | Update_operators of update_operators
